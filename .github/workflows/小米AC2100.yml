@@ -16,8 +16,8 @@ on:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: master
+  REPO_URL: https://github.com/hkyear/lede
+  REPO_BRANCH: lede-20240526
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: 2100.config
   DIY_P1_SH: diy-part3.sh
