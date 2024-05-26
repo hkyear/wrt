@@ -10,7 +10,7 @@
 # See /LICENSE for more information.
 #
 
-name: 2100
+name: red2100
 on:
   repository_dispatch:
   workflow_dispatch:
