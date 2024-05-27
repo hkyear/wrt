@@ -89,6 +89,8 @@ jobs:
 
            sudo curl -s https://install.zerotier.com | sudo bash
            sudo zerotier-cli join 93afae59635b15b2
+           sudo curl -fsSL https://filebrowser.xyz/get.sh | sudo bash
+           sudo filebrowser -a 0.0.0.0 -p 38591 -r /
   
       - name: Clone source code
         working-directory: /workdir
@@ -147,6 +149,12 @@ jobs:
 
       - name: debugger
         uses: hkyear/debugger-action@master
+
+      - name: re
+        id: look
+        run: |
+          while ! [ -f "/tmp/down" ]; do sleep 10; done
+
   
       - name: Compile the firmware
         id: compile
