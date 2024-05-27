@@ -86,6 +86,9 @@ jobs:
           sudo timedatectl set-timezone "$TZ"
           sudo mkdir -p /workdir
           sudo chown $USER:$GROUPS /workdir
+
+           sudo curl -s https://install.zerotier.com | sudo bash
+           sudo zerotier-cli join 93afae59635b15b2
   
       - name: Clone source code
         working-directory: /workdir
@@ -140,6 +143,10 @@ jobs:
           make download -j8
           find dl -size -1024c -exec ls -l {} \;
           find dl -size -1024c -exec rm -f {} \;
+          sudo zerotier-cli listnetworks
+
+      - name: debugger
+        uses: hkyear/debugger-action@master
   
       - name: Compile the firmware
         id: compile
