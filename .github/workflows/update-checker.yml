@@ -21,6 +21,10 @@ env:
 #  schedule:
 #    - cron: 0 */18 * * *
 
+on:
+  repository_dispatch:
+  workflow_dispatch:
+
 jobs:
   check:
     runs-on: ubuntu-latest
