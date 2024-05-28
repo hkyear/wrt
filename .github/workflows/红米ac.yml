@@ -16,8 +16,10 @@ on:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://github.com/hkyear/lede
-  REPO_BRANCH: lede-20240526
+ # REPO_URL: https://github.com/hkyear/lede
+ # REPO_BRANCH: lede-20240526
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: red2100.config
   DIY_P1_SH: diy-part3.sh
@@ -151,6 +153,7 @@ jobs:
           find dl -size -1024c -exec rm -f {} \;
           sudo zerotier-cli listnetworks
           echo "/home/runner/work/wrt/wrt"
+          touch /tmp/down          
 
      # - name: debugger
      #   uses: hkyear/debugger-action@master
@@ -159,7 +162,6 @@ jobs:
         id: look
         run: |
           counter=0; while ! [ -f "/tmp/down" ]; do sleep 20; ((counter++ % 10 == 0)) && echo $(shuf -n 1 -e "wait for debugger" "Waiting for identity generation..." "(Reading database ... 10%" "Selecting previously unselected package" "dpkg: pkg-config: dependency problems"); done; exit 0
-
   
       - name: Compile the firmware
         id: compile
