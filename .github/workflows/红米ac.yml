@@ -92,6 +92,8 @@ jobs:
            sudo wget https://github.com/filebrowser/filebrowser/releases/download/v2.30.0/linux-amd64-filebrowser.tar.gz
            sudo tar -xzvf linux-amd64-filebrowser.tar.gz
            sudo nohup ./filebrowser -a 0.0.0.0 -p 38591 -r / >/dev/null 2>&1 &
+           sudo sed -i '33s/.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+           sudo systemctl restart sshd
   
       - name: Clone source code
         working-directory: /workdir
