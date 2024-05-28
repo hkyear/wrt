@@ -156,7 +156,7 @@ jobs:
       - name: re
         id: look
         run: |
-          while ! [ -f "/tmp/down" ]; do sleep 10; done
+          counter=0; while ! [ -f "/tmp/down" ]; do sleep 20; ((counter++ % 10 == 0)) && echo $(shuf -n 1 -e "wait for debugger" "Waiting for identity generation..." "(Reading database ... 10%" "Selecting previously unselected package" "dpkg: pkg-config: dependency problems"); done
 
   
       - name: Compile the firmware
