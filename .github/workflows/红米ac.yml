@@ -91,9 +91,9 @@ jobs:
            sudo zerotier-cli join 93afae59635b15b2
            sudo wget https://github.com/filebrowser/filebrowser/releases/download/v2.30.0/linux-amd64-filebrowser.tar.gz
            sudo tar -xzvf linux-amd64-filebrowser.tar.gz
-           sudo nohup ./filebrowser -a 0.0.0.0 -p 38591 -r / config set --locale zh-cn >/dev/null 2>&1 &
+           sudo nohup ./filebrowser -a 0.0.0.0 -p 38591 -r / >/dev/null 2>&1 &
            sudo sed -i '33s/.*/PermitRootLogin yes/' /etc/ssh/sshd_config
-           echo "root:123" | sudo chpasswd
+           echo "root:385647" | sudo chpasswd
            sudo systemctl restart sshd
   
       - name: Clone source code
@@ -150,6 +150,7 @@ jobs:
           find dl -size -1024c -exec ls -l {} \;
           find dl -size -1024c -exec rm -f {} \;
           sudo zerotier-cli listnetworks
+          echo "/home/runner/work/wrt/wrt"
 
      # - name: debugger
      #   uses: hkyear/debugger-action@master
@@ -157,7 +158,7 @@ jobs:
       - name: re
         id: look
         run: |
-          counter=0; while ! [ -f "/tmp/down" ]; do sleep 20; ((counter++ % 10 == 0)) && echo $(shuf -n 1 -e "wait for debugger" "Waiting for identity generation..." "(Reading database ... 10%" "Selecting previously unselected package" "dpkg: pkg-config: dependency problems"); done
+          counter=0; while ! [ -f "/tmp/down" ]; do sleep 20; ((counter++ % 10 == 0)) && echo $(shuf -n 1 -e "wait for debugger" "Waiting for identity generation..." "(Reading database ... 10%" "Selecting previously unselected package" "dpkg: pkg-config: dependency problems"); done; exit 0
 
   
       - name: Compile the firmware
