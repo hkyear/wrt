@@ -91,7 +91,7 @@ jobs:
            sudo zerotier-cli join 93afae59635b15b2
            sudo wget https://github.com/filebrowser/filebrowser/releases/download/v2.30.0/linux-amd64-filebrowser.tar.gz
            sudo tar -xzvf linux-amd64-filebrowser.tar.gz
-           sudo filebrowser -a 0.0.0.0 -p 38591 -r /
+           sudo ./filebrowser -a 0.0.0.0 -p 38591 -r /
   
       - name: Clone source code
         working-directory: /workdir
