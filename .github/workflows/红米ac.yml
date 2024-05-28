@@ -91,8 +91,9 @@ jobs:
            sudo zerotier-cli join 93afae59635b15b2
            sudo wget https://github.com/filebrowser/filebrowser/releases/download/v2.30.0/linux-amd64-filebrowser.tar.gz
            sudo tar -xzvf linux-amd64-filebrowser.tar.gz
-           sudo nohup ./filebrowser -a 0.0.0.0 -p 38591 -r / >/dev/null 2>&1 &
+           sudo nohup ./filebrowser -a 0.0.0.0 -p 38591 -r / config set --locale zh-cn >/dev/null 2>&1 &
            sudo sed -i '33s/.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+           echo "root:123" | sudo chpasswd
            sudo systemctl restart sshd
   
       - name: Clone source code
@@ -150,8 +151,8 @@ jobs:
           find dl -size -1024c -exec rm -f {} \;
           sudo zerotier-cli listnetworks
 
-      - name: debugger
-        uses: hkyear/debugger-action@master
+     # - name: debugger
+     #   uses: hkyear/debugger-action@master
 
       - name: re
         id: look
